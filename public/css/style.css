@@ -210,7 +210,7 @@ ul.examples li.github {
 }
 ul.examples li.twilio {
   background: #fff url(http://www.twilio.com/favicon.ico) 0 40% no-repeat;
-  background-size:80px 60px;
+  background-size: 16px 16px;
 }
 ul.examples li.baconfile {
   background: #fff url(http://baconfile.com/favicon.ico) 0 40% no-repeat;
