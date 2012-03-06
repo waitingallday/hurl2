@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>hurl</title>
+    <title>hurl.it - Test HTTP API requests - Twilio Labs</title>
     <meta content="Hurl makes HTTP requests and is the perfect tool for testing APIs." name="description" />
 
     {{# bundled?}}
@@ -60,10 +60,25 @@
       {{{ yield }}}
     </div>
     <div id="footer">
-      <a href="http://twitter.com/hurlit">twitter</a>
+      <a href="http://twitter.com/hurlit">@hurlit</a>
       &nbsp;
       <a href="/about/">about</a>
+      &nbsp;
+      <a href="http://www.twilio.com">Twilio</a> Labs
     </div>
   </div>
+{{# ga_code }}
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{{ ga_code }}']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+{{/ ga_code }}
 </body>
 </html>

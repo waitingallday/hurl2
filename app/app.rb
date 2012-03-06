@@ -32,6 +32,7 @@ module Hurl
     def initialize(*args)
       super
       @debug = ENV['DEBUG']
+      @ga_code = ENV['GA_CODE']
       setup_default_hurls
     end
 

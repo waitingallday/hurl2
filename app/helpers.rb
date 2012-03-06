@@ -25,6 +25,10 @@ module Hurl
       !!@user
     end
 
+    def ga_code
+      @ga_code
+    end
+
     def user
       @user
     end
