@@ -14,10 +14,10 @@ Hurl requires Ruby 1.8.6+
 
 First download hurl and cd into the directory:
 
-    git clone git://github.com/defunkt/hurl
+    git clone git://github.com/twilio/hurl
     cd hurl
 
-Or download [the zip](http://github.com/defunkt/hurl/zipball/master).
+Or download [the zip](http://github.com/twilio/hurl/zipball/master).
 
 Next make sure you have [RubyGems](https://rubygems.org/pages/download) installed.
 
@@ -42,7 +42,7 @@ Issues
 ------
 
 Find a bug? Want a feature? Submit an [issue
-here](http://github.com/defunkt/hurl/issues). Patches welcome!
+here](http://github.com/twilio/hurl/issues). Patches welcome!
 
 
 Screenshot
@@ -51,8 +51,8 @@ Screenshot
 [![Hurl](http://img.skitch.com/20091020-xtiqtj4eajuxs43iu5h3be7upj.png)](http://hurl.it)
 
 
-Authors
--------
+Original Authors
+----------------
 
 * [Leah Culver][2]
 * [Chris Wanstrath][3]
