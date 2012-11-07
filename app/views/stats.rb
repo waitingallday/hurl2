@@ -9,11 +9,9 @@ module Views
     end
 
     def count(thing)
-      files = Dir["#{Hurl::DB::DIR}/#{thing}/**/**"].reject do |file|
-        File.directory?(file)
-      end
+      count = Hurl::DB.count(thing)
 
-      { :stat => thing, :value => files.size }
+      { :stat => thing, :value => count }
     end
 
     def disk_stats
