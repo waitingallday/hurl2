@@ -200,21 +200,21 @@ ul.examples li {
   margin: 3px 0;
 }
 ul.examples li.twitter {
-  background: #fff url(http://twitter.com/favicon.ico) 0 40% no-repeat;
+  background: #fff url(//twitter.com/favicon.ico) 0 40% no-repeat;
 }
 ul.examples li.vimeo {
-  background: #fff url(http://vimeo.com/favicon.ico) 0 40% no-repeat;
+  background: #fff url(//vimeo.com/favicon.ico) 0 40% no-repeat;
 }
 ul.examples li.github {
-  background: #fff url(http://github.com/favicon.ico) 0 40% no-repeat;
+  background: #fff url(//github.com/favicon.ico) 0 40% no-repeat;
   background-size: 16px;
 }
 ul.examples li.twilio {
-  background: #fff url(http://www.twilio.com/favicon.ico) 0 40% no-repeat;
+  background: #fff url(//www.twilio.com/favicon.ico) 0 40% no-repeat;
   background-size: 16px;
 }
 ul.examples li.baconfile {
-  background: #fff url(http://baconfile.com/favicon.ico) 0 40% no-repeat;
+  background: #fff url(//baconfile.com/favicon.ico) 0 40% no-repeat;
 }
 /* request/response area */
 .tab-current,
