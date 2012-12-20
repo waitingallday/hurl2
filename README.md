@@ -37,6 +37,15 @@ Run Locally
 
 Now visit <http://localhost:9393>
 
+Run in Heroku
+-------------
+
+    heroku create
+    git push heroku master
+    heroku open
+
+This will open a copy of Hurl running on your own private Heroku instance.
+
 
 Issues
 ------
