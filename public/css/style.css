@@ -275,3 +275,9 @@ td.date {
 .unicorn {
   text-align: center;
 }
+
+.response-time{
+  margin-right: 10px;
+  color: #ddd;
+  font-size: 12px;
+}

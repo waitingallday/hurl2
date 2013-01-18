@@ -171,13 +171,15 @@ module Hurl
         type    = url =~ /(\.js)$/ ? 'js' : curl.content_type
         body    = pretty_print(type, curl.body_str)
         request = pretty_print_requests(sent_headers, post_data)
+        params['response_time'] = curl.total_time
 
         json :header    => header,
              :body      => body,
              :request   => request,
              :hurl_id   => save_hurl(params),
              :prev_hurl => @user ? @user.second_to_last_hurl_id : nil,
-             :view_id   => save_view(header, body, request)
+             :view_id   => save_view(header, body, request),
+             :response_time => curl.total_time
       rescue => e
         json :error => CGI::escapeHTML(e.to_s)
       end
