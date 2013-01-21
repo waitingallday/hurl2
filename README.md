@@ -68,5 +68,3 @@ Original Authors
 
 
 [1]: http://r09.railsrumble.com/
-[2]: http://github.com/leah
-[3]: http://github.com/defunkt
