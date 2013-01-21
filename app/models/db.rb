@@ -10,33 +10,46 @@ module Hurl
     def self.decode(object)
       Yajl::Parser.parse(Zlib::Inflate.inflate(object)) rescue nil
     end
+
+    def self.close
+    end
   end
 
   class PostgresDB < AbstractDB
     CONN = PG::Connection::new(
-        ENV.fetch("POSTGRES_HOST", "localhost"),
-        ENV.fetch("POSTGRES_PORT", 5432), 
-        :dbname => "hurls",
-        :user => ENV.fetch("POSTGRES_USER", "postgres"),
-        :password => ENV.fetch("POSTGRES_PASSWORD", "postgres")
+      ENV.fetch("POSTGRES_HOST", "localhost"),
+      ENV.fetch("POSTGRES_PORT", 5432), 
+      :dbname => "hurls",
+      :user => ENV.fetch("POSTGRES_USER", "postgres"),
+      :password => ENV.fetch("POSTGRES_PASSWORD", "postgres")
     )
 
+    def self.select_query(scope)
+      "SELECT content::bytea FROM %s WHERE id = $1 LIMIT 1" % CONN.escape_string(scope.to_s)
+    end
+
     def self.find(scope, id)
-        CONN.exec("SELECT content::bytea FROM hurls WHERE scope = $1 AND id = $2 LIMIT 1", [scope, id], 1) do |result|
-            decode(result.getvalue(0, 0)) if result.num_tuples >= 1
-        end
+      CONN.exec(select_query(scope), [id], 1) do |result|
+        decode(result.getvalue(0, 0)) if result.num_tuples >= 1
+      end
+    end
+
+    def self.insert_query(scope)
+      "INSERT INTO %s VALUES ($1::varchar, $2::bytea)" % CONN.escape_string(scope.to_s)
     end
 
     def self.save(scope, id, content)
-        CONN.exec("INSERT INTO hurls VALUES ($1::varchar, $2::varchar, $3::bytea)", 
-                  [scope, id, {:value => encode(content), :format => 1}])
+      CONN.exec(insert_query(scope), [id, {:value => encode(content), :format => 1}])
     end
 
     def self.count(scope)
+      CONN.exec("SELECT COUNT(*) FROM %s" % CONN.escape_string(scope.to_s)) do |result|
+        result.getvalue(0, 0)
+      end
     end
 
     def self.close
-        CONN.finish
+      CONN.finish
     end
   end
 
