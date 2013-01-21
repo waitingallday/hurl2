@@ -8,23 +8,23 @@ var Hurl = {
       // indicate inputs using defaults
       self.addClass('defaulted')
 
-		  if (self.val() === '' || self.val() === title) {
-			  self.val(title).css('color', '#E9EAEA')
-		  } else {
-				self.addClass('focused')
+      if (self.val() === '' || self.val() === title) {
+        self.val(title).css('color', '#E9EAEA')
+      } else {
+        self.addClass('focused')
       }
 
-		  self.focus(function() {
-			  if (self.val() === title) {
-				  self.val('').addClass('focused').css('color', '#333')
-			  }
-		  })
+      self.focus(function() {
+        if (self.val() === title) {
+          self.val('').addClass('focused').css('color', '#333')
+        }
+      })
 
-		  self.blur(function() {
-			  if (self.val() === '') {
-				  self.val(title).removeClass('focused').css('color', '#E9EAEA')
-			  }
-		  })
+      self.blur(function() {
+        if (self.val() === '') {
+          self.val(title).removeClass('focused').css('color', '#E9EAEA')
+        }
+      })
     })
   },
 
@@ -211,6 +211,7 @@ $(document).ready(function() {
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
         $('.help-blurb').hide()
+        $('.response-time').text((data.response_time.toFixed(3) + " seconds"))
         $('#request-and-response').show()
       } else {
         $('#flash-error-msg').html("Weird response. Sorry.")
@@ -252,7 +253,7 @@ $(document).ready(function() {
   })
 
   // in-field labels
-	Hurl.labelHints('input[title]')
+  Hurl.labelHints('input[title]')
 
   // relatize dates
   $('.relatize').relatizeDate()

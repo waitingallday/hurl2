@@ -126,6 +126,7 @@
 </div>
 <div id="request-and-response" {{# hide_request_and_response? }}style="display:none;"{{/ hide_request_and_response? }}>
   <div class="utils">
+    <span class="response-time">{{ hurl_response_time_pretty }}</span>
     <a href="{{ view_permalink }}" class="full-size-link nav-item" target="_blank">view full size</a>
     <a href="{{ hurl_permalink }}" class="permalink nav-item">permalink</a>
   </div>
@@ -150,6 +151,7 @@
     </div>
   </div>
   <div class="utils">
+    <span class="response-time">{{ hurl_response_time_pretty }}</span>
     <a href="#" class="full-size-link nav-item" target="_blank">view full size</a>
     <a href="#" class="permalink nav-item">permalink</a>
   </div>

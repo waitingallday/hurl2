@@ -114,6 +114,16 @@ module Views
       @hurl['follows_redirects']
     end
 
+    def hurl_response_time
+      @hurl['response_time']
+    end
+
+    def hurl_response_time_pretty
+      if hurl_response_time
+        hurl_response_time.round(3).to_s + " seconds"
+      end
+    end
+
 
     #
     # view related
