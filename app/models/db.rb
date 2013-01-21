@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'pg'
 
 module Hurl
   class AbstractDB
@@ -8,6 +9,34 @@ module Hurl
 
     def self.decode(object)
       Yajl::Parser.parse(Zlib::Inflate.inflate(object)) rescue nil
+    end
+  end
+
+  class PostgresDB < AbstractDB
+    CONN = PG::Connection::new(
+        ENV.fetch("POSTGRES_HOST", "localhost"),
+        ENV.fetch("POSTGRES_PORT", 5432), 
+        :dbname => "hurls",
+        :user => ENV.fetch("POSTGRES_USER", "postgres"),
+        :password => ENV.fetch("POSTGRES_PASSWORD", "postgres")
+    )
+
+    def self.find(scope, id)
+        CONN.exec("SELECT content::bytea FROM hurls WHERE scope = $1 AND id = $2 LIMIT 1", [scope, id], 1) do |result|
+            decode(result.getvalue(0, 0)) if result.num_tuples >= 1
+        end
+    end
+
+    def self.save(scope, id, content)
+        CONN.exec("INSERT INTO hurls VALUES ($1::varchar, $2::varchar, $3::bytea)", 
+                  [scope, id, {:value => encode(content), :format => 1}])
+    end
+
+    def self.count(scope)
+    end
+
+    def self.close
+        CONN.finish
     end
   end
 
@@ -65,9 +94,10 @@ module Hurl
     end
   end
 
-  db_backend = ENV.fetch("DB_BACKEND", "file")
+  db_backend = ENV.fetch("DB_BACKEND", "postgres")
   DB = {
     "file" => FileDB,
     "redis" => RedisDB,
+    "postgres" => PostgresDB
   }.fetch(db_backend)
 end
