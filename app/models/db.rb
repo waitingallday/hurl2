@@ -49,7 +49,7 @@ module Hurl
     end
 
     def self.close
-      CONN.finish unless CONN.finished?
+      #CONN.finish unless CONN.finished?
     end
   end
 
