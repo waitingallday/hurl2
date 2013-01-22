@@ -19,7 +19,7 @@ module Hurl
     CONN = PG::Connection::new(
       ENV.fetch("POSTGRES_HOST", "localhost"),
       ENV.fetch("POSTGRES_PORT", 5432), 
-      :dbname => "hurls",
+      :dbname => ENV.fetch("POSTGRES_DATABASE", "hurls"),
       :user => ENV.fetch("POSTGRES_USER", "postgres"),
       :password => ENV.fetch("POSTGRES_PASSWORD", "postgres")
     )
