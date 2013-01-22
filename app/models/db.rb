@@ -10,9 +10,6 @@ module Hurl
     def self.decode(object)
       Yajl::Parser.parse(Zlib::Inflate.inflate(object)) rescue nil
     end
-
-    def self.close
-    end
   end
 
   class PostgresDB < AbstractDB
@@ -46,10 +43,6 @@ module Hurl
       CONN.exec("SELECT COUNT(*) FROM %s" % CONN.escape_string(scope.to_s)) do |result|
         result.getvalue(0, 0)
       end
-    end
-
-    def self.close
-      #CONN.finish unless CONN.finished?
     end
   end
 

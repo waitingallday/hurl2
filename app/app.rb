@@ -284,9 +284,5 @@ module Hurl
         raise "Cannot stringify #{data.inspect}"
       end
     end
-
-    after do 
-        DB.close
-    end
   end
 end
