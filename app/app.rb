@@ -103,22 +103,6 @@ module Hurl
       mustache :stats
     end
 
-    get '/login/?' do
-      authenticate!
-      redirect '/'
-    end
-
-    get '/login/callback/?' do
-      authenticate!
-      redirect '/'
-    end
-
-    get '/logout/?' do
-      logout!
-      session['flash'] = 'see you later!'
-      redirect '/'
-    end
-
     post '/' do
       return json(:error => "Calm down and try my margarita!") if rate_limited?
 
