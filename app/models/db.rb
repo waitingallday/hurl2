@@ -13,53 +13,62 @@ module Hurl
   end
 
   class PostgresDB < AbstractDB
-    CONN = PG::Connection::new(
-      ENV.fetch("POSTGRES_HOST", "localhost"),
-      ENV.fetch("POSTGRES_PORT", 5432), 
-      :dbname => ENV.fetch("POSTGRES_DATABASE", "hurls"),
-      :user => ENV.fetch("POSTGRES_USER", "postgres"),
-      :password => ENV.fetch("POSTGRES_PASSWORD", "postgres")
-    )
+
+    def self.connection
+      @@connection ||= PG::Connection::new(
+        ENV.fetch("POSTGRES_HOST", "localhost"),
+        ENV.fetch("POSTGRES_PORT", 5432), 
+        :dbname => ENV.fetch("POSTGRES_DATABASE", "hurls"),
+        :user => ENV.fetch("POSTGRES_USER", "postgres"),
+        :password => ENV.fetch("POSTGRES_PASSWORD", "postgres")
+      )
+    end
 
     def self.select_query(scope)
-      "SELECT content::bytea FROM %s WHERE id = $1 LIMIT 1" % CONN.escape_string(scope.to_s)
+      "SELECT content::bytea FROM %s WHERE id = $1 LIMIT 1" % connection.escape_string(scope.to_s)
     end
 
     def self.find(scope, id)
-      CONN.exec(select_query(scope), [id], 1) do |result|
+      connection.exec(select_query(scope), [id], 1) do |result|
         decode(result.getvalue(0, 0)) if result.num_tuples >= 1
       end
     end
 
     def self.insert_query(scope)
-      "INSERT INTO %s VALUES ($1::varchar, $2::bytea)" % CONN.escape_string(scope.to_s)
+      "INSERT INTO %s VALUES ($1::varchar, $2::bytea)" % connection.escape_string(scope.to_s)
     end
 
     def self.save(scope, id, content)
-      CONN.exec(insert_query(scope), [id, {:value => encode(content), :format => 1}])
+      connection.exec(insert_query(scope), [id, {:value => encode(content), :format => 1}])
     end
 
     def self.count(scope)
-      CONN.exec("SELECT COUNT(*) FROM %s" % CONN.escape_string(scope.to_s)) do |result|
+      connection.exec("SELECT COUNT(*) FROM %s" % connection.escape_string(scope.to_s)) do |result|
         result.getvalue(0, 0)
       end
     end
   end
 
   class RedisDB < AbstractDB
-    uri = URI.parse(ENV.fetch("REDISTOGO_URL", "redis://127.0.0.1:6379"))
-    CONNECTION = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+
+    def self.connection
+      @@uri = URI.parse(ENV.fetch("REDISTOGO_URL", "redis://127.0.0.1:6379"))
+      @@connection ||= Redis.new(
+        :host => @@uri.host,
+        :port => @@uri.port,
+        :password => @@uri.password)
+    end
 
     def self.find(scope, id)
-      decode(CONNECTION.get("hurl/#{scope}/#{id}"))
+      decode(connection.get("hurl/#{scope}/#{id}"))
     end
 
     def self.save(scope, id, content)
-      CONNECTION.set("hurl/#{scope}/#{id}", encode(content))
+      connection.set("hurl/#{scope}/#{id}", encode(content))
     end
 
     def self.count(scope)
-      CONNECTION.keys("hurl/#{scope}/*").size
+      connection.keys("hurl/#{scope}/*").size
     end
   end
 
