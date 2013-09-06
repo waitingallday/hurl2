@@ -33,7 +33,18 @@ Now install Hurl's dependencies:
 Run Locally
 -----------
 
+    bundle install
     bundle exec shotgun config.ru
+
+### Setting up Postgres
+
+In `psql` run:
+
+    # CREATE DATABASE hurls;
+    # \connect hurls;
+    # create table views (id character(40), content bytea);
+    # create table hurls (id character(40), content bytea);
+    # create table users (id character(40), content bytea);
 
 Now visit <http://localhost:9393>
 
