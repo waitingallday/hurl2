@@ -38,6 +38,8 @@ Run Locally
 
 ### Setting up Postgres
 
+Make sure you have the user `postgres` created
+
 In `psql` run:
 
     # CREATE DATABASE hurls;
@@ -45,6 +47,12 @@ In `psql` run:
     # create table views (id character(40), content bytea);
     # create table hurls (id character(40), content bytea);
     # create table users (id character(40), content bytea);
+
+Make sure to have the proper permissions:
+    # Assign owner to postgres
+    # ALTER TABLE views OWNER TO postgres;
+    # ALTER TABLE hurls OWNER TO postgres;
+    # ALTER TABLE users OWNER TO postgres;
 
 Now visit <http://localhost:9393>
 

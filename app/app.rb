@@ -192,6 +192,12 @@ module Hurl
       valid_schemes = ['http', 'https']
       begin
         uri = URI.parse(url)
+        unless uri.path.nil?
+            if uri.host.nil? and uri.scheme.nil?
+                uri.host = uri.path
+                uri.scheme = 'http'
+            end
+        end
         raise URI::InvalidURIError if uri.host == 'hurl.it'
         raise URI::InvalidURIError if !valid_schemes.include? uri.scheme
         false
