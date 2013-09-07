@@ -14,7 +14,7 @@ module Hurl
 
   class PostgresDB < AbstractDB
 
-    def intialize
+    def initialize
       @connection = PG::Connection::new(
         ENV.fetch("POSTGRES_HOST", "localhost"),
         ENV.fetch("POSTGRES_PORT", 5432), 
