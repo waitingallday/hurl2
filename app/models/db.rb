@@ -14,6 +14,20 @@ module Hurl
 
   class PostgresDB < AbstractDB
 
+    def intialize
+      @connection = PG::Connection::new(
+        ENV.fetch("POSTGRES_HOST", "localhost"),
+        ENV.fetch("POSTGRES_PORT", 5432), 
+        :dbname => ENV.fetch("POSTGRES_DATABASE", "hurls"),
+        :user => ENV.fetch("POSTGRES_USER", "postgres"),
+        :password => ENV.fetch("POSTGRES_PASSWORD", "postgres")
+      )
+    end
+
+    def connection
+      @connection
+    end
+
     def self.connection
       @@connection ||= PG::Connection::new(
         ENV.fetch("POSTGRES_HOST", "localhost"),
@@ -29,7 +43,7 @@ module Hurl
     end
 
     def self.find(scope, id)
-      connection.exec(select_query(scope), [id], 1) do |result|
+      self.new.connection.exec(select_query(scope), [id], 1) do |result|
         decode(result.getvalue(0, 0)) if result.num_tuples >= 1
       end
     end
@@ -39,11 +53,11 @@ module Hurl
     end
 
     def self.save(scope, id, content)
-      connection.exec(insert_query(scope), [id, {:value => encode(content), :format => 1}])
+      self.new.connection.exec(insert_query(scope), [id, {:value => encode(content), :format => 1}])
     end
 
     def self.count(scope)
-      connection.exec("SELECT COUNT(*) FROM %s" % connection.escape_string(scope.to_s)) do |result|
+      self.new.connection.exec("SELECT COUNT(*) FROM %s" % connection.escape_string(scope.to_s)) do |result|
         result.getvalue(0, 0)
       end
     end
