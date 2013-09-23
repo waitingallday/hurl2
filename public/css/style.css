@@ -201,9 +201,11 @@ ul.examples li {
 }
 ul.examples li.twitter {
   background: #fff url(//twitter.com/favicon.ico) 0 40% no-repeat;
+  background-size: 16px;
 }
 ul.examples li.vimeo {
   background: #fff url(//vimeo.com/favicon.ico) 0 40% no-repeat;
+  background-size: 16px;
 }
 ul.examples li.github {
   background: #fff url(//github.com/favicon.ico) 0 40% no-repeat;
