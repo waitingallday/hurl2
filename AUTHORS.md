@@ -11,22 +11,25 @@ Below is a list of people who have contributed to `hurl.it`.
 * [Hank Stoever][hstove]
 * [Joël Franusic][jpf]
 
-* Benjamin Curtis <chris@ozmm.org>
-* Chris Hall <chris@ozmm.org>
-* Dean Perry <dean+github@deanperry.net>
-* Igor Wiedler <chris@ozmm.org>
-* Jeff Lindsay <chris@ozmm.org>
-* John Sheehan <johnsheehan@gmail.com>
-* Kevin Burke <kevin@twilio.com>
-* Leon <idealhack@gmail.com>
-* Maksim Berjoza <andrewmbenton@gmail.com>
-* Mark Paschal <chris@ozmm.org>
-* Mislav Marohnić <chris@ozmm.org>
-* Neal Poole <neal@nealpoole.com>
-* RailsRumble Organizers <organizers@railsrumble.com>
-* Tianyi Cui <chris@ozmm.org>
-* Tim Carey-Smith <tim@spork.in>
-* alan <chris@ozmm.org>
+- Benjamin Curtis <benjamin.curtis@gmail.com>
+- Carlos Diaz-Padron <carlos@carlosdp.io>
+- Chris Hall <chall@itops-chall.(none)>
+- Chris Ledet <chris.ledet@wildbit.com>
+- Dean Perry <dean+github@deanperry.net>
+- Igor Wiedler <igor@wiedler.ch>
+- Jeff Lindsay <progrium@gmail.com>
+- John Sheehan <johnsheehan@gmail.com>
+- Kevin Burke <kevin@twilio.com>
+- Leon <idealhack@gmail.com>
+- Maksim Berjoza <torbjon@gmail.com>
+- Mark Paschal <markpasc@markpasc.org>
+- Mislav Marohnić <mislav.marohnic@gmail.com>
+- Neal Poole <neal@nealpoole.com>
+- Oscar Sanchez <oscar@seas.1605.apng.wireless-pennnet.upenn.edu>
+- RailsRumble Organizers <organizers@railsrumble.com>
+- Tianyi Cui <tianyicui@gmail.com>
+- Tim Carey-Smith <tim@spork.in>
+- alan <alankennedy100@gmail.com>
 
 [2]: http://github.com/leah
 [3]: http://github.com/defunkt
