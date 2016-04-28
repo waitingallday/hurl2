@@ -80,7 +80,7 @@ Screenshot
 
 
 Original Authors
--------
+----------------
 
 * [Leah Culver][2]
 * [Chris Wanstrath][3]

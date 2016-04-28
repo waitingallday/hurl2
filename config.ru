@@ -3,9 +3,9 @@ unless $LOAD_PATH.include? "."
 end
 
 begin
-  require 'env'
-rescue LoadError
-  nil
+  require './env'
+rescue LoadError 
+  nil	
 end
 
 require 'app/app'
