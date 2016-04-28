@@ -29,10 +29,10 @@
 </head>
 
 <body>
+  <div id="header">
+    <a href="/"><img src="/img/logo.png" title="hurl" /></a>
+  </div>
   <div id="inset">
-    <div id="header">
-      <a href="/"><img src="/img/logo.png" title="hurl" /></a>
-    </div>
     <div id="content">
       <p class="flash-error" style="display: none;">
         <a href="#" class="flash-close"><img class="delete" src="/img/delete.png" title="remove"/></a>
@@ -43,11 +43,6 @@
         <span id="flash-notice-msg">{{ flash }}</span>
       </p>
       {{{ yield }}}
-    </div>
-    <div id="footer">
-      <a href="http://twitter.com/hurlit">twitter</a>
-      &nbsp;
-      <a href="/about/">about</a>
     </div>
   </div>
 </body>
